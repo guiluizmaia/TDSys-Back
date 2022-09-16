@@ -7,7 +7,6 @@ dist
 .vscode/*
 
 package-lock.json
-ormconfig.js
 
 .env
 

@@ -27,7 +27,7 @@ export class CreateTableProviders1663118769619 implements MigrationInterface {
                     },
                     {
                         name: 'cnpj',
-                        type: 'varchar(11)',
+                        type: 'varchar(20)',
                     },
                     {
                         name: 'active',
