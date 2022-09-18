@@ -1,6 +1,7 @@
 import { Addresses } from "src/modules/commonData/infra/typeorm/entities/Addresses";
 import { Phones } from "src/modules/commonData/infra/typeorm/entities/Phones";
-import { Column, CreateDateColumn, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Product } from "src/modules/products/infra/typeorm/entities/Product";
+import { Column, CreateDateColumn, Entity, JoinTable, ManyToMany, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 
 @Entity('providers')
@@ -37,6 +38,8 @@ export class Provider {
         inverseJoinColumn: { name: "addressId" }
     })
     addresses: Addresses;
+    @OneToMany((type) => Product, provider => Product)
+    products: Promise<Product[]>;
     @CreateDateColumn()
     created_at: Date;
     @UpdateDateColumn()

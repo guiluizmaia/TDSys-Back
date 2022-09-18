@@ -1,3 +1,5 @@
+import ProductRepository from 'src/modules/products/infra/typeorm/repositories/ProductRepository';
+import { IProductRepository } from 'src/modules/products/repositories/IProductRepository';
 import { ProviderRepository } from 'src/modules/providers/infra/typeorm/repositories/ProviderRepository';
 import IProviderRepository from 'src/modules/providers/repositories/IProviderRepository';
 import { UserRepository } from 'src/modules/users/infra/typeorm/repositories/UserRepository';
@@ -13,3 +15,4 @@ container
 .registerSingleton<INumeric>('Numeric', Numeric)
 .registerSingleton<IUserRepository>('UserRepository', UserRepository)
 .registerSingleton<IProviderRepository>('ProviderRepository', ProviderRepository)
+.registerSingleton<IProductRepository>('ProductRepository', ProductRepository)

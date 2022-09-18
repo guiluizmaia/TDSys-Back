@@ -25,8 +25,12 @@ export class CreateTableProducts1663200155498 implements MigrationInterface {
                             type: 'varchar(100)',
                         },
                         {
+                            name: 'uM',
+                            type: 'varchar(100)',
+                        },
+                        {
                             name: 'qntd',
-                            type: 'integer',
+                            type: 'decimal',
                         },
                         {
                             name: 'amount',
