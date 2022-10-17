@@ -1,5 +1,9 @@
+import ClientsRepository from 'src/modules/clients/infra/typeorm/repositories/ClientsRepository';
+import { IClientsRepository } from 'src/modules/clients/repositories/IClientsRepository';
 import ProductRepository from 'src/modules/products/infra/typeorm/repositories/ProductRepository';
 import { IProductRepository } from 'src/modules/products/repositories/IProductRepository';
+import PropertiesRepository from 'src/modules/properties/infra/typeorm/repositories/PropertiesRepository';
+import { IPropertiesRepository } from 'src/modules/properties/repositories/IPropertiesRepository';
 import { ProviderRepository } from 'src/modules/providers/infra/typeorm/repositories/ProviderRepository';
 import IProviderRepository from 'src/modules/providers/repositories/IProviderRepository';
 import { UserRepository } from 'src/modules/users/infra/typeorm/repositories/UserRepository';
@@ -16,3 +20,5 @@ container
 .registerSingleton<IUserRepository>('UserRepository', UserRepository)
 .registerSingleton<IProviderRepository>('ProviderRepository', ProviderRepository)
 .registerSingleton<IProductRepository>('ProductRepository', ProductRepository)
+.registerSingleton<IClientsRepository>('ClientsRepository', ClientsRepository)
+.registerSingleton<IPropertiesRepository>('PropertiesRepository', PropertiesRepository)
