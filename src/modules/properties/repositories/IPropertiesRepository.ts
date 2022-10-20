@@ -1,8 +1,10 @@
+import { Addresses } from "src/modules/commonData/infra/typeorm/entities/Addresses";
 import { Properties } from "../infra/typeorm/entities/Properties";
 
 export interface PropertiesDtos {
     name: string;
     clientId: string;
+    addresses: Addresses[];
 }
 
 export interface IPropertiesRepository {

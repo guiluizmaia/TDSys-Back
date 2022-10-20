@@ -1,6 +1,8 @@
 import { Clients } from "src/modules/clients/infra/typeorm/entities/Clients";
+import { Addresses } from "src/modules/commonData/infra/typeorm/entities/Addresses";
 import { Inventory } from "src/modules/inventory/infra/typeorm/entities/Inventory";
-import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Talhao } from "src/modules/talhao/infra/typeorm/entities/Talhao";
+import { Column, CreateDateColumn, Entity, JoinColumn, JoinTable, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 @Entity('property')
 export class Properties {
@@ -13,6 +15,18 @@ export class Properties {
     })
     @JoinColumn({name: "clientId"})
     client: Clients;
+    @OneToMany((type) => Talhao, property => Talhao)
+    talhao: Promise<Talhao[]>;
+    @ManyToMany((type) => Addresses, {
+        cascade: true,
+        eager: true
+    })
+    @JoinTable({
+        name: "property_addresses",
+        joinColumn: { name: "propertyId", referencedColumnName: "id"},
+        inverseJoinColumn: { name: "addressId" }
+    })
+    addresses: Addresses;
     @OneToMany((type) => Inventory, property => Inventory)
     inventories: Promise<Inventory[]>;
     @Column()

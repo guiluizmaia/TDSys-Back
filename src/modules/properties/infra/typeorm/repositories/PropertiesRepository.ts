@@ -42,9 +42,7 @@ class PropertiesRepository implements IPropertiesRepository {
     
     async delete(id: string): Promise<void> {
         await this.repository.delete(id);
-
     }
-
 }
 
 export default PropertiesRepository;
