@@ -25,8 +25,10 @@ class ProductRepository implements IProductRepository{
         return this.repository.save(create);
     }
 
-    async save(product: Product): Promise<Product> {
-        return this.repository.save(product);
+    async save({provider, ...product}: Product): Promise<Product> {
+        await this.repository.save(product);
+        return this.repository.findOne({where: {id: product.id}})
+
     }
 
     async index(skip: number = 0, take: number = 10): Promise<Product[]> {
