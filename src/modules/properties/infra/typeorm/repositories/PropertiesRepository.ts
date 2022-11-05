@@ -21,11 +21,15 @@ class PropertiesRepository implements IPropertiesRepository {
     }
 
     async create(Properties: PropertiesDtos): Promise<Properties> {
+        Properties.name = Properties.name.trim();
         const create = this.repository.create(Properties);
         return this.repository.save(create);
     }
 
     async save(properties: Properties): Promise<Properties> {
+        if(properties.name)
+            properties.name = properties.name.trim();
+        
         return this.repository.save(properties);
     }
 

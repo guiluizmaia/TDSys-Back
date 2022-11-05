@@ -21,11 +21,15 @@ class ProductRepository implements IProductRepository{
     }
 
     async create(product: ProductDtos): Promise<Product> {
+        product.name = product.name.trim()
         const create = this.repository.create(product);
         return this.repository.save(create);
     }
 
     async save({provider, ...product}: Product): Promise<Product> {
+        if(product.name)
+            product.name = product.name.trim();
+       
         await this.repository.save(product);
         return this.repository.findOne({where: {id: product.id}})
 

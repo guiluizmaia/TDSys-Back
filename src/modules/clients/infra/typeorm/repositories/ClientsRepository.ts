@@ -21,11 +21,20 @@ class ClientsRepository implements IClientsRepository {
     }
 
     async create(clients: ClientsDtos): Promise<Clients> {
+        clients.name = clients.name.trim();
+        clients.email = clients.email.trim();
+
         const create = this.repository.create(clients);
         return this.repository.save(create);
     }
 
     async save(clients: Clients): Promise<Clients> {
+        if(clients.name)
+            clients.name = clients.name.trim();
+            
+        if(clients.email)
+            clients.email = clients.email.trim();
+
         return this.repository.save(clients);
     }
 

@@ -25,6 +25,7 @@ class ProviderController{
     
         return response.status(201).json(provider);
       }
+
       
       public async index(request: Request, response: Response): Promise<Response> {
         let { page } = request.query;

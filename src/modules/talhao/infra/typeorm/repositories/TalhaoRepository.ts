@@ -21,11 +21,14 @@ class TalhaoRepository implements ITalhaoRepository{
     }
 
     async create(talhao: TalhaoDtos): Promise<Talhao> {
+        talhao.name = talhao.name.trim();
         const create = this.repository.create(talhao);
         return this.repository.save(create);
     }
 
     async save(talhao: Talhao): Promise<Talhao> {
+        if(talhao.name)
+            talhao.name = talhao.name.trim();
         return this.repository.save(talhao);
     }
 

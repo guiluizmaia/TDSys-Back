@@ -25,11 +25,19 @@ export class ProviderRepository implements IProviderRepository {
     }
     
     async create(provider: ProviderDtos): Promise<Provider> {
+        provider.name = provider.name.trim();
+        provider.email = provider.email.trim();
         const create = this.repository.create(provider);
         return this.repository.save(create)
     }
 
     async save(provider: Provider): Promise<Provider> {
+        if(provider.name)
+            provider.name = provider.name.trim();
+        
+        if(provider.email)
+            provider.email = provider.email.trim();
+        
         return this.repository.save(provider)
     }
     

@@ -22,11 +22,17 @@ export class UserRepository implements IUserRepository {
     }
     
     async create(user: UserDtos): Promise<User> {
+        user.name = user.name.trim()
+        user.email = user.email.trim()
         const create = this.repository.create(user);
         return this.repository.save(create)
     }
 
     async save(user: User): Promise<User> {
+        if(user.name)
+            user.name = user.name.trim()
+        if(user.email)
+            user.email = user.email.trim()
         return this.repository.save(user)
     }
     
