@@ -45,6 +45,12 @@ class PropertiesRepository implements IPropertiesRepository {
     }
     
     async delete(id: string): Promise<void> {
+        await this.repository.query(`
+            DELETE FROM property_addresses p
+            WHERE p."propertyId" = '${id}'
+        `)
+
+        
         await this.repository.delete(id);
     }
 }

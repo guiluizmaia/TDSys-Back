@@ -19,7 +19,8 @@ export class Properties {
     talhao: Promise<Talhao[]>;
     @ManyToMany((type) => Addresses, {
         cascade: true,
-        eager: true
+        eager: true,
+        onDelete: 'CASCADE'
     })
     @JoinTable({
         name: "property_addresses",
