@@ -15,7 +15,7 @@ export class Properties {
     })
     @JoinColumn({name: "clientId"})
     client: Clients;
-    @OneToMany((type) => Talhao, property => Talhao)
+    @OneToMany((type) => Talhao, property => Talhao, { onDelete: 'CASCADE'})
     talhao: Promise<Talhao[]>;
     @ManyToMany((type) => Addresses, {
         cascade: true,
@@ -24,10 +24,10 @@ export class Properties {
     @JoinTable({
         name: "property_addresses",
         joinColumn: { name: "propertyId", referencedColumnName: "id"},
-        inverseJoinColumn: { name: "addressId" }
+        inverseJoinColumn: { name: "addressId" },
     })
     addresses: Addresses;
-    @OneToMany((type) => Inventory, property => Inventory)
+    @OneToMany((type) => Inventory, property => Inventory, { onDelete: 'CASCADE'})
     inventories: Promise<Inventory[]>;
     @Column()
     name: string;
