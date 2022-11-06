@@ -1,5 +1,6 @@
 import { Request, Response, Router } from 'express';
 import clientsRoutes from 'src/modules/clients/infra/http/routes/Clients.routes';
+import purchaseRoutes from 'src/modules/inventory/infra/http/routes/Purchase.routes';
 import productRoutes from 'src/modules/products/infra/http/routes/Product.routes';
 import propertiesRoutes from 'src/modules/properties/infra/http/routes/Properties.routes';
 import providersRoutes from 'src/modules/providers/infra/http/routes/Providers.routes';
@@ -17,5 +18,6 @@ v1Routes.use('/product', ensureAuthenticated, productRoutes);
 v1Routes.use('/clients', ensureAuthenticated, clientsRoutes);
 v1Routes.use('/properties', ensureAuthenticated, propertiesRoutes);
 v1Routes.use('/talhao', ensureAuthenticated, talhaoRoutes);
+v1Routes.use('/purchase', ensureAuthenticated, purchaseRoutes);
 
 export default v1Routes;

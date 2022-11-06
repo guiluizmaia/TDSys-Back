@@ -27,6 +27,14 @@ export class CreateTablePurchaseProduct1663200856942 implements MigrationInterfa
                     {
                         name: 'productId',
                         type: 'uuid',
+                    },                    
+                    {
+                        name: 'qntd',
+                        type: 'integer',
+                    },                    
+                    {
+                        name: 'price',
+                        type: 'decimal',
                     },
                     {
                         name: 'created_at',

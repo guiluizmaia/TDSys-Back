@@ -21,10 +21,6 @@ export class CreateTablePurchase1663200437195 implements MigrationInterface {
                         default: `uuid_generate_v4()`
                     },
                     {
-                        name: 'name',
-                        type: 'varchar(100)',
-                    },
-                    {
                         name: 'amount',
                         type: 'decimal',
                     },

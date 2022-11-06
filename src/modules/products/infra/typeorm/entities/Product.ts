@@ -1,3 +1,4 @@
+import { Properties } from "src/modules/properties/infra/typeorm/entities/Properties";
 import { Provider } from "src/modules/providers/infra/typeorm/entities/Provider";
 import { Column, CreateDateColumn, Entity, JoinColumn, JoinTable, ManyToMany, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
@@ -19,7 +20,14 @@ export class Product {
         eager: true
     })
     @JoinColumn({name: "providerId"})
-    provider: Provider
+    provider: Provider;
+    @Column()
+    propertyId: string;
+    @ManyToOne((type) => Properties, properties => properties.products, {
+        eager: true
+    })
+    @JoinColumn({name: "propertyId"})
+    property: Properties;
     @CreateDateColumn()
     created_at: Date;
     @UpdateDateColumn()

@@ -8,6 +8,17 @@ class ProductRepository implements IProductRepository{
     constructor(){
         this.repository = getRepository(Product);
     }
+    async findByPropertyId(id: String): Promise<Product[]> {
+        return this.repository.find({where: {propertyId: id}});
+    }
+
+    async searchByNameAndPropertyId(name: String, id: string): Promise<Product[]> {
+        return this.repository.createQueryBuilder()
+            .select()
+            .where('name ILIKE :searchTerm', {searchTerm: `%${name}%`})
+            .andWhere('"propertyId" = :id', {id})
+            .getMany()
+    }
 
     async searchByName(name: String): Promise<Product[]> {
         return this.repository.createQueryBuilder()

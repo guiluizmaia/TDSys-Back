@@ -1,6 +1,7 @@
 import { Clients } from "src/modules/clients/infra/typeorm/entities/Clients";
 import { Addresses } from "src/modules/commonData/infra/typeorm/entities/Addresses";
 import { Inventory } from "src/modules/inventory/infra/typeorm/entities/Inventory";
+import { Product } from "src/modules/products/infra/typeorm/entities/Product";
 import { Talhao } from "src/modules/talhao/infra/typeorm/entities/Talhao";
 import { Column, CreateDateColumn, Entity, JoinColumn, JoinTable, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
@@ -30,6 +31,8 @@ export class Properties {
     addresses: Addresses;
     @OneToMany((type) => Inventory, property => Inventory, { onDelete: 'CASCADE'})
     inventories: Promise<Inventory[]>;
+    @OneToMany((type) => Product, provider => Product)
+    products: Promise<Product[]>;
     @Column()
     name: string;
     @CreateDateColumn()

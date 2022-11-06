@@ -37,6 +37,10 @@ export class CreateTableProducts1663200155498 implements MigrationInterface {
                             type: 'decimal',
                         },
                         {
+                            name: 'propertyId',
+                            type: 'uuid',
+                        },
+                        {
                             name: 'providerId',
                             type: 'uuid',
                         },
@@ -57,6 +61,12 @@ export class CreateTableProducts1663200155498 implements MigrationInterface {
                             columnNames: ['providerId'],
                             referencedColumnNames: ['id'],
                             referencedTableName: 'providers'
+                        }),
+                        new TableForeignKey({
+                            name: 'propertyProductsFK',
+                            columnNames: ['propertyId'],
+                            referencedColumnNames: ['id'],
+                            referencedTableName: 'property'
                         })
                     ]
                 })

@@ -6,6 +6,8 @@ import IndexProductByIdService from "src/modules/products/services/IndexProductB
 import GetProductByIdService from "src/modules/products/services/GetProductByIdService";
 import SearchProductByNameService from "src/modules/products/services/SearchProductByNameService";
 import DeleteProductService from "src/modules/products/services/DeleteProductService";
+import GetProductByPropertyIdService from "src/modules/products/services/GetProductByPropertyIdService";
+import SearchProductByNameAndPropertyService from "src/modules/products/services/SearchProductByNameAndPropertyService";
 
 class ProductController {
     public async create(request: Request, response: Response): Promise<Response> {
@@ -60,12 +62,32 @@ class ProductController {
         return response.status(200).json(product);
       }
 
+      public async findByProperty(request: Request, response: Response): Promise<Response> {
+        const { id } = request.params;
+    
+        const product = await container
+          .resolve(GetProductByPropertyIdService)
+          .execute({ id });
+    
+        return response.status(200).json(product);
+      }
+
       public async search(request: Request, response: Response): Promise<Response> {
         const { name } = request.params;
     
         const products = await container
           .resolve(SearchProductByNameService)
           .execute({ name });
+    
+        return response.status(200).json(products);
+      }
+
+      public async searchAndProperty(request: Request, response: Response): Promise<Response> {
+        const { name, id } = request.params;
+    
+        const products = await container
+          .resolve(SearchProductByNameAndPropertyService)
+          .execute({ name, id });
     
         return response.status(200).json(products);
       }
