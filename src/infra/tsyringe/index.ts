@@ -1,6 +1,8 @@
 import ClientsRepository from 'src/modules/clients/infra/typeorm/repositories/ClientsRepository';
 import { IClientsRepository } from 'src/modules/clients/repositories/IClientsRepository';
+import ApplicationRepository from 'src/modules/inventory/infra/typeorm/repositories/ApplicationRepository';
 import PurchaseRepository from 'src/modules/inventory/infra/typeorm/repositories/PurchaseRepository';
+import { IApplicationRepository } from 'src/modules/inventory/repositories/IApplicationRepository';
 import { IPurchaseRepository } from 'src/modules/inventory/repositories/IPurchaseRepository';
 import ProductRepository from 'src/modules/products/infra/typeorm/repositories/ProductRepository';
 import { IProductRepository } from 'src/modules/products/repositories/IProductRepository';
@@ -28,3 +30,5 @@ container
 .registerSingleton<IPropertiesRepository>('PropertiesRepository', PropertiesRepository)
 .registerSingleton<ITalhaoRepository>('TalhaoRepository', TalhaoRepository)
 .registerSingleton<IPurchaseRepository>('PurchaseRepository', PurchaseRepository)
+.registerSingleton<IApplicationRepository>('ApplicationRepository', ApplicationRepository)
+

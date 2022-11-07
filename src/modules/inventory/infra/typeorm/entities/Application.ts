@@ -6,7 +6,7 @@ export class Application {
     @PrimaryGeneratedColumn("uuid")
     id: string;
     @Column()
-    product: string;
+    productId: string;
     @Column()
     qntd: Number;
     @Column()
