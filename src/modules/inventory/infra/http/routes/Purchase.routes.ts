@@ -9,6 +9,8 @@ const purchaseController = new PurchaseController();
 purchaseRoutes.post('/', purchaseController.create);
 purchaseRoutes.patch('/', purchaseController.update);
 purchaseRoutes.get('/', purchaseController.index);
+purchaseRoutes.get('/report', purchaseController.report);
+
 purchaseRoutes.get('/:id', purchaseController.byId);
 purchaseRoutes.delete('/:id', purchaseController.delete);
 

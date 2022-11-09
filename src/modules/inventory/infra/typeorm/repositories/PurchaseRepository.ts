@@ -10,6 +10,10 @@ class PurchaseRepository implements IPurchaseRepository {
         this.repository = getRepository(Purchase);
         this.repositoryProduct = getRepository(Purchase_product);
     }
+    async findByPropertyId(id: string): Promise<Purchase[]> {
+        return this.repository.find({where: {propertyId: id}})
+    }
+    
     async count(): Promise<number> {
         return this.repository.count();
     }

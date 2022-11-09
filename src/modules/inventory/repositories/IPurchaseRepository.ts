@@ -23,5 +23,6 @@ export interface IPurchaseRepository {
     count(): Promise<number>;
     findProductByPurchaseId(id: string): Promise<Purchase_product[]>;
     findById(id: string): Promise<Purchase | undefined>;
+    findByPropertyId(id: string): Promise<Purchase[]>;
     delete(id: string): Promise<void>;
 }

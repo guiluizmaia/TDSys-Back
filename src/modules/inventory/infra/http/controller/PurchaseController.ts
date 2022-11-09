@@ -6,6 +6,7 @@ import SavePurchaseService from "src/modules/inventory/services/SavePurchaseServ
 import DeletePurchaseService from "src/modules/inventory/services/DeletePurchaseService";
 import IndexPurchaseService from "src/modules/inventory/services/IndexPurchaseService";
 import FindByIdPurchaseService from "src/modules/inventory/services/FindByIdPurchaseService";
+import PurchaseReportService from "src/modules/inventory/services/PurchaseReportService";
 
 class PurchaseController {
     public async create(request: Request, response: Response): Promise<Response> {
@@ -58,6 +59,17 @@ class PurchaseController {
         .execute({ id });
   
       return response.status(200).json(product);
+    }
+
+    public async report(request: Request, response: Response): Promise<Response> {
+      const { propertyIds } = request.query;
+  
+      
+      const products = await container
+        .resolve(PurchaseReportService)
+        .execute({ propertyIds: JSON.parse(propertyIds) });
+  
+      return response.status(200).json(products);
     }
 }
 

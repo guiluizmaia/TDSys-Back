@@ -1,6 +1,6 @@
 import CreateProductService from "src/modules/products/services/CreateProductService";
 import { container } from "tsyringe";
-import { Request, Response } from 'express';
+import { json, Request, Response } from 'express';
 import UpdateProductService from "src/modules/products/services/UpdateProductService";
 import IndexProductByIdService from "src/modules/products/services/IndexProductByIdService";
 import GetProductByIdService from "src/modules/products/services/GetProductByIdService";
@@ -8,6 +8,7 @@ import SearchProductByNameService from "src/modules/products/services/SearchProd
 import DeleteProductService from "src/modules/products/services/DeleteProductService";
 import GetProductByPropertyIdService from "src/modules/products/services/GetProductByPropertyIdService";
 import SearchProductByNameAndPropertyService from "src/modules/products/services/SearchProductByNameAndPropertyService";
+import ProductReportService from "src/modules/products/services/ProductReportService";
 
 class ProductController {
     public async create(request: Request, response: Response): Promise<Response> {
@@ -88,6 +89,17 @@ class ProductController {
         const products = await container
           .resolve(SearchProductByNameAndPropertyService)
           .execute({ name, id });
+    
+        return response.status(200).json(products);
+      }
+
+      public async report(request: Request, response: Response): Promise<Response> {
+        const { propertyIds } = request.query;
+    
+        
+        const products = await container
+          .resolve(ProductReportService)
+          .execute({ propertyIds: JSON.parse(propertyIds) });
     
         return response.status(200).json(products);
       }

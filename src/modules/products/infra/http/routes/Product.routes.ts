@@ -8,6 +8,7 @@ const productController = new ProductController();
 
 productRoutes.post('/', productController.create);
 productRoutes.patch('/', productController.update);
+productRoutes.get('/report', productController.report);
 productRoutes.get('/search/property/:name/:id', productController.searchAndProperty);
 productRoutes.get('/search/:name', productController.search);
 productRoutes.get('/property/:id', productController.findByProperty);

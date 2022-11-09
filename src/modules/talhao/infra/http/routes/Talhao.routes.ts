@@ -8,6 +8,7 @@ const talhaoController = new TalhaoController();
 
 talhaoRoutes.post('/', talhaoController.create);
 talhaoRoutes.patch('/', talhaoController.update);
+talhaoRoutes.get('/report', talhaoController.report);
 talhaoRoutes.get('/search/:name', talhaoController.search);
 talhaoRoutes.get('/:id', talhaoController.find);
 talhaoRoutes.delete('/:id', talhaoController.delete);

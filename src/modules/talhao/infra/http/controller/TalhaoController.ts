@@ -6,6 +6,7 @@ import IndexTalhaoService from "src/modules/talhao/services/IndexTalhaoService";
 import DeleteTalhaoService from "src/modules/talhao/services/DeleteTalhaoService";
 import GetTalhaoByIdService from "src/modules/talhao/services/GetTalhaoByIdService";
 import SearchTalhaoByNameService from "src/modules/talhao/services/SearchTalhaoByNameService";
+import TalhaoReportService from "src/modules/talhao/services/TalhaoReportService";
 
 class TalhaoController {
     public async create(request: Request, response: Response): Promise<Response> {
@@ -68,6 +69,16 @@ class TalhaoController {
           .execute({ name });
     
         return response.status(200).json(property);
+    }
+    
+    public async report(request: Request, response: Response): Promise<Response> {
+      const { talhaoIds } = request.query;
+       
+      const products = await container
+        .resolve(TalhaoReportService)
+        .execute({ talhaoIds: JSON.parse(talhaoIds) });
+  
+      return response.status(200).json(products);
     }
 }
 
