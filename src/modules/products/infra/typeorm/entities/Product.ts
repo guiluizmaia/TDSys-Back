@@ -20,14 +20,14 @@ export class Product {
         eager: true
     })
     @JoinColumn({name: "providerId"})
-    provider: Provider;
+    provider?: Provider;
     @Column()
     propertyId: string;
     @ManyToOne((type) => Properties, properties => properties.products, {
         eager: true
     })
     @JoinColumn({name: "propertyId"})
-    property: Properties;
+    property?: Properties;
     @CreateDateColumn()
     created_at: Date;
     @UpdateDateColumn()

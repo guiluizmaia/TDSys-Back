@@ -17,9 +17,11 @@ class UpdateProductService{
 
         if(!product) throw new AppError('Product not found', 404);
 
-        Object.assign(product, data);
+        const {property, provider, ...products} = product
 
-        return this.productRepository.save(product);
+        Object.assign(products, data);
+
+        return this.productRepository.save(products);
     }
 }
 
