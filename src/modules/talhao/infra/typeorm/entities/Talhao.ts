@@ -13,7 +13,7 @@ export class Talhao {
         eager: true
     })
     @JoinColumn({name: "propertyId"})
-    property: Properties;   
+    property?: Properties;   
     @CreateDateColumn()
     created_at: Date;
     @UpdateDateColumn()

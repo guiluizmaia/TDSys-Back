@@ -17,9 +17,12 @@ class UpdatePropertyService {
 
         if(!properties) throw new AppError('Properties not found', 404);
 
-        Object.assign(properties, data);
 
-        return this.repository.save(properties);
+        const {client, ...propertie} = properties
+
+        Object.assign(propertie, data);
+
+        return this.repository.save(propertie);
     }
 }
 

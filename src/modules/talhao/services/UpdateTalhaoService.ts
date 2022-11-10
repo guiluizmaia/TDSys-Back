@@ -17,9 +17,11 @@ class UpdateTalhaoService {
 
         if(!talhao) throw new AppError('Talhao not found', 404);
 
-        Object.assign(talhao, data);
+        const {property, ...ta} = talhao
 
-        return this.repository.save(talhao);
+        Object.assign(ta, data);
+
+        return this.repository.save(ta);
     }
 }
 

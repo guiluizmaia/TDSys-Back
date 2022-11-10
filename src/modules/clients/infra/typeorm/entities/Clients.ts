@@ -16,7 +16,7 @@ export class Clients {
     @Column()
     email: string;
     @OneToMany((type) => Properties, client => Properties)
-    properties: Promise<Properties[]>;
+    properties?: Promise<Properties[]>;
     @CreateDateColumn()
     created_at: Date;
     @UpdateDateColumn()

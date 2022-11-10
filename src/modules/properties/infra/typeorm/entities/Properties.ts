@@ -15,7 +15,7 @@ export class Properties {
         eager: true
     })
     @JoinColumn({name: "clientId"})
-    client: Clients;
+    client?: Clients;
     @OneToMany((type) => Talhao, property => Talhao, { onDelete: 'CASCADE'})
     talhao: Promise<Talhao[]>;
     @ManyToMany((type) => Addresses, {
