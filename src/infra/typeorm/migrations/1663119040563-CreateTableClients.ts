@@ -27,7 +27,7 @@ export class CreateTableClients1663119040563 implements MigrationInterface {
                         },
                         {
                             name: 'cnpj',
-                            type: 'varchar(11)',
+                            type: 'varchar(14)',
                         },
                         {
                             name: 'insc_state',

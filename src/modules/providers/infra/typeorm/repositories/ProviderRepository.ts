@@ -1,4 +1,4 @@
-import { getRepository, Repository } from "typeorm";
+import { getRepository, Repository, Not } from "typeorm";
 import IProviderRepository, { ProviderDtos  } from "../../../repositories/IProviderRepository";
 import { Provider } from "../entities/Provider";
 
@@ -44,7 +44,10 @@ export class ProviderRepository implements IProviderRepository {
     async index(skip: number = 0, take: number = 10): Promise<Provider[]> {
         return this.repository.find({
             skip,
-            take
+            take,
+            where: {
+                active: Not(false)
+            }
         })
     }
 
