@@ -1,5 +1,5 @@
 import { IPropertiesRepository, PropertiesDtos } from "src/modules/properties/repositories/IPropertiesRepository";
-import { getRepository, Repository } from "typeorm";
+import { getRepository, Not, Repository } from "typeorm";
 import { Properties } from "../entities/Properties";
 
 class PropertiesRepository implements IPropertiesRepository {
@@ -37,6 +37,9 @@ class PropertiesRepository implements IPropertiesRepository {
         return this.repository.find({
             skip,
             take,
+            where: {
+                active: true
+            }
         })
     }
 

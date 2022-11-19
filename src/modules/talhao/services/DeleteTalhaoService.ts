@@ -1,4 +1,7 @@
 import AppError from "src/infra/http/errors/AppError";
+import { IApplicationRepository } from "src/modules/inventory/repositories/IApplicationRepository";
+import { IProductRepository } from "src/modules/products/repositories/IProductRepository";
+import { IPropertiesRepository } from "src/modules/properties/repositories/IPropertiesRepository";
 import { inject, injectable } from "tsyringe";
 import { ITalhaoRepository } from "../repositories/ITalhaoRepository";
 
@@ -11,6 +14,8 @@ class DeleteTalhaoService {
     constructor(
         @inject('TalhaoRepository')
         private repository: ITalhaoRepository,
+        @inject('ApplicationRepository')
+        private applicationRepository: IApplicationRepository,
       ) {}
 
     public async execute({id}: IRequest): Promise<void> {
@@ -18,7 +23,17 @@ class DeleteTalhaoService {
       
       if(!find) throw new AppError('Talhao not found', 404);
       
-      await this.repository.delete(id);
+      const applications = await this.applicationRepository.findProductByTalhaoId(find.id)
+
+      if(applications.length > 0){
+        await Promise.all(
+          applications.map(async application => {
+            await this.applicationRepository.delete(application.id)
+          })
+        )
+      }
+
+      await this.repository.save({...find, active: false});
     }
 }
 

@@ -8,6 +8,7 @@ export interface TalhaoDtos {
 export interface ITalhaoRepository {
     searchByName(name: String): Promise<Talhao[]>;
     findById(id: String): Promise<Talhao | undefined>;
+    findByPropertyId(id: String): Promise<Talhao[]>;
     create(talhao: TalhaoDtos): Promise<Talhao>;
     save(talhao: Talhao): Promise<Talhao>;
     index(skip?: number, take?: number): Promise<Talhao[]>;

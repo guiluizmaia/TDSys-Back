@@ -8,6 +8,13 @@ class TalhaoRepository implements ITalhaoRepository{
     constructor(){
         this.repository = getRepository(Talhao);
     }    
+    async findByPropertyId(id: String): Promise<Talhao[]> {
+        return this.repository.find({
+            where: {
+                propertyId: id
+            }
+        })
+    }
 
     async searchByName(name: String): Promise<Talhao[]> {
         return this.repository.createQueryBuilder()
@@ -36,6 +43,9 @@ class TalhaoRepository implements ITalhaoRepository{
         return this.repository.find({
             skip,
             take,
+            where: {
+                active: true
+            }
         })
     }
 

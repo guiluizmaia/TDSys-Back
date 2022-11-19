@@ -9,6 +9,8 @@ export class Talhao {
     name: string;
     @Column()
     propertyId: string;
+    @Column()
+    active: boolean;
     @ManyToOne((type) => Properties, property => property.inventories, {
         eager: true
     })

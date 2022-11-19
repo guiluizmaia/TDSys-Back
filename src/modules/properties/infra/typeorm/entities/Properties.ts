@@ -11,6 +11,8 @@ export class Properties {
     id: string;
     @Column()
     clientId: string;
+    @Column()
+    active: boolean;
     @ManyToOne((type) => Clients, clients => clients.properties, {
         eager: true
     })
